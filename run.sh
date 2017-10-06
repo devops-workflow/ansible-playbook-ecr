@@ -10,7 +10,7 @@ if [ -n "${aws_region}" ]; then
 fi
 if [ -n "${aws_RO_accounts}" ]; then
   accounts_quoted="\"${aws_RO_accounts//,/\",\"}\""
-  arg_accounts="--extra-vars='{\"aws_RO_accounts\":[${accounts_quoted}'"
+  arg_accounts="--extra-vars='{\"aws_RO_accounts\":[${accounts_quoted}]}'"
   #arg_accounts="--extra-vars='{\"aws_RO_accounts\":[${aws_RO_accounts}]}'"
 fi
 if [ -n "${image_name}" ]; then
