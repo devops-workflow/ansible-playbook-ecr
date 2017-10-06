@@ -21,6 +21,7 @@ if [ -n "${namespace}" ]; then
 fi
 accounts_quoted="\"${aws_RO_accounts//,/\",\"}\""
 json="'{\"aws_region\":\"${aws_region}\",\"image_name\":\"${image_name}\",\"namespace\":\"${namespace}\",\"aws_RO_accounts\":[${accounts_quoted}]}'"
+echo "${json}" > run_vars.json
 env | sort | grep -v ^LESS_TERMCAP
 
 echo -e "\nInstall: pip modules..."
@@ -43,5 +44,6 @@ echo "CMD: ansible-playbook -i inventory playbook.yml --extra-vars ansible_pytho
   --extra-vars ${json}"
 #  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}"
 ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
-  --extra-vars=${json}
+  --extra-vars "@run_vars.json"
+#  --extra-vars ${json} # No errors, but not used
 #  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}
