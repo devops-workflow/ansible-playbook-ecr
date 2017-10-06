@@ -9,7 +9,7 @@ if [ -n "${aws_region}" ]; then
   arg_region="--extra-vars aws_region=${aws_region}"
 fi
 if [ -n "${aws_RO_accounts}" ]; then
-  arg_accounts="--extra-vars '{\"aws_RO_accounts\": [${aws_RO_accounts}]}'"
+  arg_accounts="--extra-vars='{\"aws_RO_accounts\": [${aws_RO_accounts}]}'"
 fi
 if [ -n "${image_name}" ]; then
   arg_image="--extra-vars image_name=${image_name}"
