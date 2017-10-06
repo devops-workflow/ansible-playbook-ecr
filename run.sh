@@ -6,20 +6,20 @@ export python=$(which python)
 
 env | sort | grep -v ^LESS_TERMCAP
 
-echo "Install: pip modules..."
+echo -e "\nInstall: pip modules..."
 pip install -r requirements.txt
 
-echo "Versions"
+echo -e "\nVersions"
 ansible --version
 docker --version
 
-echo "Install: Ansible roles..."
+echo -e "\nInstall: Ansible roles..."
 ansible-galaxy install -f -r requirements.yml
 
-echo "Test: syntax"
+echo -e "\nTest: syntax"
 ansible-playbook -i inventory playbook.yml --syntax-check --list-tasks
-echo "Test: Lint"
+echo -e "\nTest: Lint"
 ansible-lint -x ANSIBLE0012,ANSIBLE0013 playbook.yml
 
-echo "Run: playbook"
+echo -e "\nRun: playbook"
 ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} --extra-vars aws_region=us-west-2 -vvvv
