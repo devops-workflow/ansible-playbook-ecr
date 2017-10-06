@@ -36,5 +36,7 @@ echo -e "\nTest: Lint"
 ansible-lint -x ANSIBLE0012,ANSIBLE0013 playbook.yml
 
 echo -e "\nRun: playbook"
+echo "CMD: ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
+  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}"
 ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
   ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}
