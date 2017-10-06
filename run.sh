@@ -21,7 +21,7 @@ if [ -n "${namespace}" ]; then
 fi
 accounts_quoted="\"${aws_RO_accounts//,/\",\"}\""
 json="'{\"aws_region\":\"${aws_region}\",\"image_name\":\"${image_name}\",\"namespace\":\"${namespace}\",\"aws_RO_accounts\":[${accounts_quoted}]}'"
-echo "${json}" > run_vars.json
+echo "{\"aws_region\":\"${aws_region}\",\"image_name\":\"${image_name}\",\"namespace\":\"${namespace}\",\"aws_RO_accounts\":[${accounts_quoted}]}" > run_vars.json
 env | sort | grep -v ^LESS_TERMCAP
 
 echo -e "\nInstall: pip modules..."
