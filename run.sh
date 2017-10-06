@@ -9,7 +9,7 @@ if [ -n "${aws_region}" ]; then
   arg_region="--extra-vars aws_region=${aws_region}"
 fi
 if [ -n "${aws_RO_accounts}" ]; then
-  accounts_quoted="\"${aws_RO_accounts//,/","}\""
+  accounts_quoted="\"${aws_RO_accounts//,/\",\"}\""
   arg_accounts="--extra-vars='{\"aws_RO_accounts\":[${accounts_quoted]}'"
   #arg_accounts="--extra-vars='{\"aws_RO_accounts\":[${aws_RO_accounts}]}'"
 fi
