@@ -19,7 +19,8 @@ fi
 if [ -n "${namespace}" ]; then
   arg_namespace="--extra-vars namespace=${namespace}"
 fi
-
+accounts_quoted="\"${aws_RO_accounts//,/\",\"}\""
+json="'{\"aws_region\":\"${aws_region}\",\"image_name\":\"${image_name}\",\"namespace\":\"${namespace}\",\"aws_RO_accounts\":[${accounts_quoted}]}'"
 env | sort | grep -v ^LESS_TERMCAP
 
 echo -e "\nInstall: pip modules..."
@@ -39,6 +40,8 @@ ansible-lint -x ANSIBLE0012,ANSIBLE0013 playbook.yml
 
 echo -e "\nRun: playbook"
 echo "CMD: ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
-  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}"
+  --extra-vars ${json}"
+#  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}"
 ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
-  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}
+  --extra-vars ${json}
+#  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}
