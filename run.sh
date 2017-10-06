@@ -43,5 +43,5 @@ echo "CMD: ansible-playbook -i inventory playbook.yml --extra-vars ansible_pytho
   --extra-vars ${json}"
 #  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}"
 ansible-playbook -i inventory playbook.yml --extra-vars ansible_python_interpreter=${python} -vvvv \
-  --extra-vars ${json}
+  --extra-vars=${json}
 #  ${arg_region} ${arg_image} ${arg_namespace} ${arg_accounts}
