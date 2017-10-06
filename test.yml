@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: ECR Login
+      shell: "$(aws ecr get-login --region {{ aws_region }})"
+
+#- name: Test ECR
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - aws-ecr
