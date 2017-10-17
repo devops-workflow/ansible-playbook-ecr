@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: ECR Login
-      shell: "$(aws ecr get-login --region {{ aws_region }})"
+      shell: "t=$(aws ecr get-login --region {{ aws_region }}) && login=${t/-e none} && $login"
 
 #- name: Test ECR
 - hosts: localhost
